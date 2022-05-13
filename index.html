@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Form</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div>
+      <h1 style="color: #64f907; background: black">
+        Utwórz nowego użytkownika
+      </h1>
+      <form action="/" method="POST">
+        <label for="firstName">Imie</label>
+        <input
+          type="text"
+          id="firstName"
+          placeholder="Podaj imie"
+          name="firstname"
+        />
+        <label for="lastName">Nazwisko</label>
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Podaj nazwisko"
+          name="lastname"
+        />
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Podaj email" name="email" />
+        <button type="submit" name="insert" value="insert">Dodaj</button>
+
+        <h1 style="color: #f92f07; background: black">Usuń użytkownika</h1>
+
+        <form action="/" method="POST">
+          <label for="firstName">ID</label>
+          <input
+            type="text"
+            id="id"
+            placeholder="Podaj Id użytkownika"
+            name="id"
+          />
+          <button type="submit" name="insert" value="delete">Usuń</button>
+        </form>
+      </form>
+    </div>
+  </body>
+</html>
