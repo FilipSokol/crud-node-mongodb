@@ -24,13 +24,16 @@ app.post("/", bParser, (req, res) => {
   const sumbit = req.body.insert;
   const id = req.body.id;
 
+  let dbo;
+  let myobj;
+
   // DODAWANIE
   if (sumbit == "insert") {
     if (firstname != "" || lastname != "" || email != "") {
       MongoClient.connect(url, function (err, db) {
         if (err) throw err;
-        const dbo = db.db("test");
-        const myobj = {
+        dbo = db.db("test");
+        myobj = {
           firstname: firstname,
           lastname: lastname,
           email: email,
