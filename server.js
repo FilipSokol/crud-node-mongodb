@@ -31,7 +31,7 @@ app.post("/", bParser, (req, res) => {
   if (sumbit == "insert") {
     if (firstname != "" || lastname != "" || email != "") {
       MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
+        if (err) return console.log(err);
         dbo = db.db("test");
         myobj = {
           firstname: firstname,
@@ -39,39 +39,37 @@ app.post("/", bParser, (req, res) => {
           email: email,
         };
         dbo.collection("Projekt").insertOne(myobj, function (err, res) {
-          if (err) throw err;
+          if (err) return console.log(err);
           console.log("Dodano do kolekcji");
           db.close();
         });
+        res.send(
+          "Dodano do kolekcji: " + firstname + " " + lastname + " " + email
+        );
       });
     } else {
       res.send("Jedno z pól zostało niewypełnione");
     }
-    res.send(firstname + " " + lastname + " " + email);
-    console.log("Dane: ", req.body);
   }
 
   // USUWANIE
   if (sumbit == "delete") {
     if (id != "") {
       MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
+        if (err) return console.log(err);
         dbo = db.db("test");
-        myobj = {
-          id: id,
-        };
         dbo
           .collection("Projekt")
           .deleteOne({ _id: ObjectId(id) }, function (err, res) {
-            if (err) throw err;
+            if (err) return console.log(err);
             console.log("Pomyślnie usunięto z kolekcji");
             db.close();
           });
+        res.send("Usunięto z kolekcji obiekt o id: " + id);
       });
     } else {
       res.send("Jedno z pól zostało niewypełnione");
     }
-    console.log("Usunięto index o id: ", req.body);
   }
 
   // AKTUALIZOWANIE
