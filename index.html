@@ -7,6 +7,7 @@
   </head>
   <body>
     <div>
+                                                                                                        <!-- INSERT -->
       <h1 style="color: #64f907; background: black">
         Utwórz nowego użytkownika
       </h1>
@@ -29,8 +30,8 @@
         <input type="email" id="email" placeholder="Podaj email" name="email" />
         <button type="submit" name="insert" value="insert">Dodaj</button>
 
+                                                                                                          <!-- DELETE -->
         <h1 style="color: #f92f07; background: black">Usuń użytkownika</h1>
-
         <form action="/" method="POST">
           <label for="firstName">ID</label>
           <input
@@ -41,7 +42,46 @@
           />
           <button type="submit" name="insert" value="delete">Usuń</button>
         </form>
-      </form>
+
+                                                                                                  <!-- UPDATE -->
+        <h1 style="color: #e38673; background: black">Edytuj użytkownika</h1>
+        <form action="/" method="POST">
+          <label for="firstName" style="font-weight: bold; color: rgb(0, 114, 118);">ID</label>
+          <input
+            type="text"
+            id="id"
+            placeholder="Podaj Id użytkownika"
+            name="id"
+          />
+          <label for="firstName">Imię </label>
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Podaj imie"
+            name="firstname"
+          />
+          <label for="lastName">Nazwisko</label>
+          <input
+            type="text"
+            id="lastName"
+            placeholder="Podaj nazwisko"
+            name="lastname"
+          />
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Podaj email"
+            name="email"
+          />
+          <button type="submit" name="insert" value="update">Edytuj</button>
+        </form>
+
+                                                                                                          <!-- READ -->
+        <h1 style="color: #73d13c; background: black">Wypisz użytkowników</h1>
+        <form action="/" method="POST">
+          <button type="submit" name="insert" value="read">Wypisz</button>
+        </form>
     </div>
   </body>
 </html>

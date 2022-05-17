@@ -28,6 +28,7 @@ app.post("/", bParser, (req, res) => {
   let myobj;
 
   // DODAWANIE
+
   if (sumbit == "insert") {
     if (firstname != "" || lastname != "" || email != "") {
       MongoClient.connect(url, function (err, db) {
@@ -53,6 +54,7 @@ app.post("/", bParser, (req, res) => {
   }
 
   // USUWANIE
+
   if (sumbit == "delete") {
     if (id != "") {
       MongoClient.connect(url, function (err, db) {
@@ -73,6 +75,47 @@ app.post("/", bParser, (req, res) => {
   }
 
   // AKTUALIZOWANIE
+
+  if (sumbit == "update") {
+    if (id != "") {
+      MongoClient.connect(url, function (err, db) {
+        if (err) return console.log(err);
+        dbo = db.db("test");
+        var newvalues = {
+          $set: { firstname: firstname, lastname: lastname, email: email },
+        };
+        dbo
+          .collection("Projekt")
+          .updateOne({ _id: ObjectId(id) }, newvalues, function (err, res) {
+            if (err) return console.log(err);
+            console.log("Pomyślnie edytowano element kolekcji");
+            db.close();
+          });
+        res.send("Edytowano obiekt o id: " + id);
+      });
+    } else {
+      res.send("Jedno z pól zostało niewypełnione");
+    }
+  }
+
+  // WYPISYWANIE
+
+  if (sumbit == "read") {
+    MongoClient.connect(url, function (err, db) {
+      if (err) return console.log(err);
+      dbo = db.db("test");
+      dbo
+        .collection("Projekt")
+        .find({})
+        .toArray(function (err, result) {
+          if (err) {
+            return console.log(err);
+          } else {
+            res.send(JSON.stringify(result));
+          }
+        });
+    });
+  }
 });
 
 const PORT = process.env.PORT || 3000;
